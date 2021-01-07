@@ -1,1 +1,0 @@
-# No Path Assets
