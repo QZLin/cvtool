@@ -1,13 +1,10 @@
-# No Path Assets
 from os import walk
 from os.path import join
-
-from cv2.cv2 import imread
 
 
 def png(name: str):
     """
-    Return name end with .png
+    Return name end with `.png`
     """
     if name[-4:].lower() == '.png':
         return name
@@ -33,7 +30,7 @@ class NPAssets:
             raise RuntimeError("%s not found" % name)
 
     def fpng(self, name, refresh_lib=False, refresh_cache=False, read_cache=None):
-        # from cv2.cv2 import imread
+        from cv2.cv2 import imread
         name = png(name)
 
         if refresh_lib:
@@ -64,7 +61,3 @@ class NPAssets:
                     # raise RuntimeError("same file name %s" % name)
                 self.library[name] = path
         return self.library
-
-
-if __name__ == "__main__":
-    pass

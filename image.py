@@ -1,10 +1,14 @@
 import numpy as np
-import cv2
-from cv2.cv2 import imshow, waitKey
+import cv2 as cv
+from cv2 import imshow, waitKey
 
 
-def pil2cv(img):
-    return cv2.cv2.cvtColor(np.asarray(img), cv2.cv2.COLOR_RGB2BGR)
+def pil2cv(image):
+    return cv.cvtColor(np.asarray(image), cv.COLOR_RGB2BGR)
+
+
+def cv2pil(image):
+    pass
 
 
 def test_img(img):
