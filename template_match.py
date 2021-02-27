@@ -53,6 +53,8 @@ def remove_close_point(point_list, distance):
     attention! length of all point must be same
     """
     points = point_list.copy()
+    if len(points) <= 1:
+        return points
     for point in points:
         others = points.copy()
         others.remove(point)
@@ -69,4 +71,4 @@ def remove_close_point(point_list, distance):
 
 
 def rm_cpt(points, distance):
-    remove_close_point(points, distance)
+    return remove_close_point(points, distance)
