@@ -2,7 +2,7 @@ from random import randint
 from typing import Iterable
 
 
-def randpos(pos, offset=10, area=None, mode='center'):
+def randpos(pos=None, offset=10, area=None, mode='center'):
     if isinstance(pos, Iterable):
         return [randpos(x) for x in pos]
     else:
