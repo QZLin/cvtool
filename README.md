@@ -1,12 +1,14 @@
-# cvtool
+# CVTool
+
+Provide some simple quick test function for opencv
 
 ~~put `cvtool` folder to your project root path or add `cvtool` to python path~~  
 (Deprecate, use setup.py)
 
 ## Install from source
 
-* clone repository  
-  `git clone xxx`
+1. clone repository  
+  `git clone https://github.com/QZLin/cvtool.git`
 
-* install via pip  
+2. install via pip  
   `pip install -e cvtool`
