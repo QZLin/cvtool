@@ -5,7 +5,7 @@ setup(
     version='0.1',
     packages=['cvtool'],
     url='',
-    license='GPL-V3',
+    license='GPL-3.0',
     author='Q.Z.Lin',
     author_email='qzlin01@163.com',
     description=''

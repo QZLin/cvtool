@@ -16,6 +16,13 @@ class MatchResult:
 
 
 def match(source, image, similarity=0.85):
+    """
+
+    :param source:
+    :param image:
+    :param similarity:
+    :return:
+    """
     res = cv.matchTemplate(image, source, cv.TM_CCOEFF_NORMED)
     _, sim, min_loc, max_loc = cv.minMaxLoc(res)
 

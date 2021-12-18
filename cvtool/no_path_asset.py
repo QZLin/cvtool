@@ -1,3 +1,4 @@
+import os.path
 from os import walk
 from os.path import join
 
@@ -12,22 +13,25 @@ def png(name: str):
 
 
 class NPAssets:
-    def __init__(self, root, use_cache=False):
+    def __init__(self, root, use_cache=False, relpath=False, relroot=None):
         self.root = root
         self.use_cache = use_cache
+        self.relpath = relpath
+        self.relroot = relroot
 
         self.cache = {}
         self.library = {}
 
         self.build_library(init=True)
 
-    def fpath(self, name, is_png=True):
-        if is_png:
-            name = png(name)
+    def fpath(self, name):
+        # if is_png:
+        #     name = png(name)
         if name in self.library.keys():
             return self.library[name]
         else:
-            raise RuntimeError("%s not found" % name)
+            # raise RuntimeError("%s not found" % name)
+            return None
 
     def fpng(self, name, refresh_lib=False, refresh_cache=False, read_cache=None):
         from cv2.cv2 import imread
@@ -56,6 +60,8 @@ class NPAssets:
         for root, dirs, files in walk(self.root, topdown=False):
             for name in files:
                 path = join(root, name)
+                if self.relpath:
+                    path = os.path.relpath(path, self.root if self.relroot is None else self.relroot)
                 if init and name in self.library.keys():
                     print("Warn: same file name %s for:\n\t%s\n\t%s" % (name, self.library[name], path))
                     # raise RuntimeError("same file name %s" % name)
