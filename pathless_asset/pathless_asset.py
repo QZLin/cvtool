@@ -12,7 +12,7 @@ def png(name: str):
     return name + '.png'
 
 
-class NPAssets:
+class PLAsset:
     def __init__(self, root, use_cache=False, relpath=False, relroot=None):
         self.root = root
         self.use_cache = use_cache
