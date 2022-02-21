@@ -5,9 +5,9 @@ setup(
     version='0.1',
     packages=['cvtool', 'pathless_asset'],
     package_data={'': ['LICENSE']},
-    url='',
-    license='GPLv3',
+    url='https://github.com/QZLin/cvtool',
     author='Q.Z.Lin',
     author_email='qzlin01@163.com',
-    description=''
+    description='',
+    classifiers=['License :: OSI Approved :: GNU General Public License v3 (GPLv3)']
 )
