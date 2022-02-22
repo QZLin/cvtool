@@ -12,3 +12,8 @@ Provide some simple quick test function for opencv
 
 2. install via pip  
   `pip install -e cvtool`
+
+or
+
+* install via pip+git  
+ `pip install git+https://github.com/qzlin/cvtool`
