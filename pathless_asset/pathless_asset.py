@@ -25,8 +25,6 @@ class PLAsset:
         self.build_library(init=True)
 
     def fpath(self, name):
-        # if is_png:
-        #     name = png(name)
         if name in self.library.keys():
             return self.library[name]
         else:

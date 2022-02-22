@@ -77,5 +77,4 @@ def remove_close_point(point_list, distance):
     return points
 
 
-def rm_cpt(points, distance):
-    return remove_close_point(points, distance)
+rm_cpt = remove_close_point

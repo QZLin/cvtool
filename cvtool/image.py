@@ -1,7 +1,7 @@
 from os.path import join
 
-import numpy as np
 import cv2 as cv
+import numpy as np
 from cv2 import imshow, waitKey
 from cv2.cv2 import imwrite
 
@@ -14,8 +14,7 @@ def cv2pil(image: np.ndarray):
     pass
 
 
-def test_img(img, print_pos=False):
-    win_name = 'test'
+def test_img(img, print_pos=False, win_name='test'):
     imshow(win_name, img)
 
     def on_mouse_action(event, x, y, flags, param):
