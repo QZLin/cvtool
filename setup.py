@@ -5,6 +5,7 @@ setup(
     version='0.1',
     packages=['cvtool', 'pathless_asset'],
     package_data={'': ['LICENSE']},
+    install_requires=['opencv-python', 'numpy'],
     url='https://github.com/QZLin/cvtool',
     author='Q.Z.Lin',
     author_email='qzlin01@163.com',
