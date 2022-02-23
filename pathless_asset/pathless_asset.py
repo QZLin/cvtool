@@ -1,9 +1,7 @@
-import os.path
-from os import walk
-from os.path import join
+import os
 
 
-def png(name: str):
+def png(name: str) -> str:
     """
     Return name end with `.png`
     """
@@ -13,11 +11,15 @@ def png(name: str):
 
 
 class PLAsset:
-    def __init__(self, root, use_cache=False, relpath=False, relroot=None):
+    def __init__(self, root, use_cache=False, rel_root=None, path_sep='/', strict_mode=False):
         self.root = root
         self.use_cache = use_cache
-        self.relpath = relpath
-        self.relroot = relroot
+        self.rel_root = rel_root
+        if os.sep == path_sep:
+            path_sep = None
+        self.sep = path_sep
+
+        self.strict_mode = strict_mode
 
         self.cache = {}
         self.library = {}
@@ -27,8 +29,9 @@ class PLAsset:
     def fpath(self, name):
         if name in self.library.keys():
             return self.library[name]
+        elif self.strict_mode:
+            raise RuntimeError("PLAsset:%s not found" % name)
         else:
-            # raise RuntimeError("%s not found" % name)
             return None
 
     def fpng(self, name, refresh_lib=False, refresh_cache=False, read_cache=None):
@@ -55,13 +58,20 @@ class PLAsset:
     def build_library(self, init=False, rebuild=False):
         if rebuild:
             self.library = {}
-        for root, dirs, files in walk(self.root, topdown=False):
+        for root, dirs, files in os.walk(self.root, topdown=False):
             for name in files:
-                path = join(root, name)
-                if self.relpath:
-                    path = os.path.relpath(path, self.root if self.relroot is None else self.relroot)
-                if init and name in self.library.keys():
-                    print("Warn: same file name %s for:\n\t%s\n\t%s" % (name, self.library[name], path))
-                    # raise RuntimeError("same file name %s" % name)
+                path = os.path.join(root, name)
+                if self.rel_root:
+                    path = os.path.relpath(path, self.root if self.rel_root is None else self.rel_root)
+                if self.sep:
+                    path = path.replace(os.sep, self.sep)
+                # Duplicate Name Key
+                if not init or name not in self.library.keys():
+                    pass
+                elif self.strict_mode:
+                    raise RuntimeError("PLAsset:duplicate file name %s" % name)
+                else:
+                    print("Warn:duplicate file name %s for:\n\t%s\n\t%s" % (name, self.library[name], path))
+
                 self.library[name] = path
         return self.library
