@@ -79,3 +79,19 @@ def sim_screen_crop(solution: tuple, source: np.ndarray) -> np.ndarray:
     # print(p1, p2)
     return source[y1:y2, x1:x2]
 
+
+def uimread(path: str) -> np.ndarray:
+    if path.isascii():
+        return cv.imread(path)
+    else:
+        with open(path, "rb") as stream:
+            array = np.asarray(bytearray(stream.read()), dtype=np.uint8)
+        return cv.imdecode(array, cv.IMREAD_UNCHANGED)
+
+
+def uimwrite(path: str, ext: str, image: np.ndarray):
+    if path.isascii():
+        return cv.imwrite(path, image)
+    else:
+        with open(path, "wb") as stream:
+            stream.write(cv.imencode(ext, image)[1])
