@@ -18,11 +18,11 @@ def test_img(img, print_pos=False, win_name='test'):
     imshow(win_name, img)
 
     def on_mouse_action(event, x, y, flags, param):
-        if print_pos:
-            print(x, y)
+        print(x, y)
 
-    cv.setMouseCallback(win_name, on_mouse_action)
-    waitKey()
+    if print_pos:
+        cv.setMouseCallback(win_name, on_mouse_action)
+    cv.waitKey()
 
 
 def crop_img(img: np.ndarray, file_name=None, file_path='.'):
@@ -61,3 +61,21 @@ def crop_img(img: np.ndarray, file_name=None, file_path='.'):
     imshow(win_name, img)
     cv.setMouseCallback(win_name, on_mouse_action)
     waitKey()
+
+
+def sim_screen_crop(solution: tuple, source: np.ndarray) -> np.ndarray:
+    x, y = solution
+    w, h, _ = source.shape
+
+    scale = w / x
+    dx, dy = int(x * scale), int(y * scale)
+
+    center = (w // 2, h // 2)
+    cx, cy = center
+    # print(center)
+    x1, y1 = cx - dx // 2, cy - dy // 2
+    x2, y2 = cx + dx // 2, cy + dy // 2
+    # p1, p2 = (x1, y1), (x2, y2)
+    # print(p1, p2)
+    return source[y1:y2, x1:x2]
+
