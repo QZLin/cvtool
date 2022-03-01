@@ -89,9 +89,9 @@ def uimread(path: str) -> np.ndarray:
         return cv.imdecode(array, cv.IMREAD_UNCHANGED)
 
 
-def uimwrite(path: str, ext: str, image: np.ndarray):
+def uimwrite(path: str, ext: str, image: np.ndarray, *args):
     if path.isascii():
-        return cv.imwrite(path, image)
+        return cv.imwrite(path, image, *args)
     else:
         with open(path, "wb") as stream:
-            stream.write(cv.imencode(ext, image)[1])
+            stream.write(cv.imencode(ext, image, *args)[1])
