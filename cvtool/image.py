@@ -10,8 +10,8 @@ def pil2cv(image) -> np.ndarray:
     return cv.cvtColor(np.asarray(image), cv.COLOR_RGB2BGR)
 
 
-def cv2pil(image: np.ndarray):
-    pass
+def cv2pil(image: np.ndarray, pil_image_class):
+    pil_image_class.fromarray(cv.cvtColor(image, cv.COLOR_BGR2RGB))
 
 
 def test_img(img, print_pos=False, win_name='test'):
@@ -80,18 +80,18 @@ def sim_screen_crop(solution: tuple, source: np.ndarray) -> np.ndarray:
     return source[y1:y2, x1:x2]
 
 
-def uimread(path: str) -> np.ndarray:
-    if path.isascii():
-        return cv.imread(path)
+def uimread(filename: str, flags=cv.IMREAD_UNCHANGED) -> np.ndarray:
+    if filename.isascii():
+        return cv.imread(filename, flags)
     else:
-        with open(path, "rb") as stream:
+        with open(filename, "rb") as stream:
             array = np.asarray(bytearray(stream.read()), dtype=np.uint8)
-        return cv.imdecode(array, cv.IMREAD_UNCHANGED)
+        return cv.imdecode(array, flags)
 
 
-def uimwrite(path: str, ext: str, image: np.ndarray, *args):
-    if path.isascii():
-        return cv.imwrite(path, image, *args)
+def uimwrite(filename: str, ext: str, image: np.ndarray, *args):
+    if filename.isascii():
+        cv.imwrite(filename, image, *args)
     else:
-        with open(path, "wb") as stream:
+        with open(filename, "wb") as stream:
             stream.write(cv.imencode(ext, image, *args)[1])
