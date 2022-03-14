@@ -10,6 +10,12 @@ def png(name: str) -> str:
     return name + '.png'
 
 
+def png_nex(name: str) -> str:
+    if name[-4:].lower() == '.png':
+        return name[:-4]
+    return name
+
+
 class PLAsset:
     def __init__(self, root, use_cache=False, rel_root=None, path_sep='/', strict_mode=False):
         self.root = root
