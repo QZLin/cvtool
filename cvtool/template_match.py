@@ -1,6 +1,8 @@
 import cv2 as cv
 from numpy import where
 
+from cvtool.image import CVImage
+
 
 class MatchResult:
 
@@ -15,7 +17,7 @@ class MatchResult:
         return "Result:%s&%s" % (self.matched, self.pos)
 
 
-def match(source, image, similarity=0.85):
+def match(source: CVImage, image: CVImage, similarity=0.85):
     """
 
     :param source:
@@ -34,7 +36,7 @@ def match(source, image, similarity=0.85):
     return result
 
 
-def match_all(source, image, similarity=0.85):
+def match_all(source: CVImage, image: CVImage, similarity=0.85):
     image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     source = cv.cvtColor(source, cv.COLOR_BGR2GRAY)
 

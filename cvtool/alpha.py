@@ -3,8 +3,10 @@ import argparse
 import cv2 as cv
 import numpy as np
 
+from cvtool.image import CVImage
 
-def merge(source, alpha):
+
+def merge(source: CVImage, alpha: CVImage):
     h, w, channel = source.shape
     b, g, r = cv.split(source)
 
