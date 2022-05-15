@@ -5,7 +5,7 @@ from cvtool import template_match
 
 from pathless_asset import pathless_asset
 
-# Short Names
+# Names Alias
 import cvtool.image as im
 import cvtool.draw
 import cvtool.template_match as tm
