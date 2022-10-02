@@ -1,6 +1,8 @@
 # CVTool
 
 Provide some simple quick test function for opencv
+All functions are wrapped in at most one level to make learning opencv through this project easier.
+
 
 ~~put `cvtool` folder to your project root path or add `cvtool` to python path~~  
 (Deprecate, use setup.py)
