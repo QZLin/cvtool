@@ -25,7 +25,7 @@ def test_img(img, print_pos=False, win_name='test'):
     cv.waitKey()
 
 
-def crop_img(img: CVImage, file_name=None, file_path='.'):
+def crop_image_tool(img: CVImage, file_name=None, file_path='.'):
     if file_name is None:
         file_name = 'crop'
 

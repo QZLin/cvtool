@@ -2,6 +2,7 @@ from cvtool import image
 from cvtool import draw
 from cvtool import positions
 from cvtool import template_match
+from cvtool import video
 
 from pathless_asset import pathless_asset
 
