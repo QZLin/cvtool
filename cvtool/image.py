@@ -4,14 +4,26 @@ import cv2 as cv
 import numpy as np
 
 CVImage = np.ndarray
+PILImage = None
 
 
-def pil2cv(image) -> CVImage:
+def try_import_pillow():
+    global PILImage
+    if PILImage is None:
+        try:
+            from PIL import Image as PILImage
+        except ModuleNotFoundError:
+            raise RuntimeError("module PIL of Pillow not found")
+
+
+def pil2cv(image: PILImage) -> CVImage:
+    try_import_pillow()
     return cv.cvtColor(np.asarray(image), cv.COLOR_RGB2BGR)
 
 
-def cv2pil(image: CVImage, pil_image_class):
-    pil_image_class.fromarray(cv.cvtColor(image, cv.COLOR_BGR2RGB))
+def cv2pil(image: CVImage):
+    try_import_pillow()
+    PILImage.fromarray(cv.cvtColor(image, cv.COLOR_BGR2RGB))
 
 
 def test_img(img, print_pos=False, win_name='test'):
