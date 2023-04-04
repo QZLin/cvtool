@@ -1,0 +1,53 @@
+name: CI
+permissions:
+# actions: read|write|none
+# checks: read|write|none
+# contents: write
+# deployments: read|write|none
+# id-token: read|write|none
+# issues: write
+# discussions: read|write|none
+# packages: read|write|none
+# pages: read|write|none
+# pull-requests: read|write|none
+# repository-projects: read|write|none
+# security-events: read|write|none
+# statuses: read|write|none
+# Controls when the workflow will run
+on:
+  issues:
+    types:
+      - opened
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  job1:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: "working_dir"
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2.5.0
+
+      - name: Build Package
+        run: |
+          python3 setup.py sdist
+          $output=Get-Item dist\* -Filter *.tar.gz
+          gzip -d "$output"
+          $temp=Get-Item dist\* -Filter *.tar
+          echo "output=$temp" >> $env:GITHUB_ENV
+
+      - uses: actions/upload-artifact@v3.1.1
+        with:
+          path: ${{ env.output }}
