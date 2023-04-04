@@ -43,9 +43,9 @@ jobs:
           gzip -d "$output"
           $temp=Get-Item dist\* -Filter *.tar
           echo "output=$temp" >> $env:GITHUB_ENV
-          echo "out_name=$($temp.Name).zip" >> $env:GITHUB_ENV
+          echo "out_name=$($temp.Name)" >> $env:GITHUB_ENV
 
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.out_name }}
+          name: ${{ env.out_name }} # .zip suffix will auto append by action
           path: ${{ env.output }}
