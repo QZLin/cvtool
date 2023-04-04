@@ -34,7 +34,7 @@ jobs:
         shell: pwsh
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v3
 
       - name: Build Package
         run: |
@@ -43,7 +43,9 @@ jobs:
           gzip -d "$output"
           $temp=Get-Item dist\* -Filter *.tar
           echo "output=$temp" >> $env:GITHUB_ENV
+          echo "out_name=$($temp.Name).zip" >> $env:GITHUB_ENV
 
-      - uses: actions/upload-artifact@v3.1.1
+      - uses: actions/upload-artifact@v3
         with:
+          name: ${{ env.out_name }}
           path: ${{ env.output }}
