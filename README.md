@@ -1,8 +1,8 @@
 # CVTool
 
 Provide some simple quick test function for opencv
-All functions are wrapped in at most one level to make learning opencv through this project easier.
-
+All functions are wrapped in at most one level to make learning opencv through this project easier.  
+[![CI](https://github.com/QZLin/cvtool/actions/workflows/cl.yml/badge.svg)](https://github.com/QZLin/cvtool/actions/workflows/cl.yml)
 
 ~~put `cvtool` folder to your project root path or add `cvtool` to python path~~  
 (Deprecate, use setup.py)
@@ -38,6 +38,7 @@ if r.matched:
 ```
 
 # Acknowledgement
+
 Free Pycharm License for opensource project  
 [Licenses for Open Source Development - Community Support](https://jb.gg/OpenSourceSupport)
 ![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)

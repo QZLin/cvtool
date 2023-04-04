@@ -1,5 +1,5 @@
 name: CI
-permissions:
+#permissions:
 # actions: read|write|none
 # checks: read|write|none
 # contents: write
