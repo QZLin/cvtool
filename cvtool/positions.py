@@ -1,3 +1,5 @@
+import math
+import warnings
 from random import randint
 from typing import Iterable
 
@@ -17,3 +19,28 @@ def randpos(pos=None, offset=10, area=None, mode='center'):
             ys = [ay, by]
             ys.sort()
             return [randint(xs[0], xs[-1]), randint(ys[0], ys[-1])]
+
+
+def remove_similar_vec(vector_list, distance):
+    """
+    attention! each of vec size must be same
+    """
+    vectors = vector_list.copy()
+    if len(vectors) <= 1:
+        return vectors
+    for vec in vectors:
+        others = vectors.copy()
+        others.remove(vec)
+        for vec2 in others:
+            temp = 0
+            for i, v in enumerate(vec):
+                temp += (v - vec2[i]) ** 2
+            dis_ = math.sqrt(temp)
+            if dis_ > distance:
+                vectors.remove(vec)
+                break
+
+    return vectors
+
+
+rm_cpt = remove_similar_vec

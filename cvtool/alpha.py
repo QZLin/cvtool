@@ -6,7 +6,7 @@ import numpy as np
 from cvtool.image import CVImage
 
 
-def merge(source: CVImage, alpha: CVImage):
+def merge(source: CVImage, alpha: CVImage) -> CVImage:
     h, w, channel = source.shape
     b, g, r = cv.split(source)
 
