@@ -1,3 +1,4 @@
+import itertools
 from os.path import join
 
 import cv2 as cv
@@ -107,3 +108,20 @@ def uimwrite(filename: str, ext: str, image: CVImage, *args):
     else:
         with open(filename, "wb") as stream:
             stream.write(cv.imencode(ext, image, *args)[1])
+
+
+def empty_image(width, height, channel=3) -> CVImage:
+    return np.zeros((width, height, channel), dtype=np.uint8)
+
+
+def non_interpolation_scale(image: CVImage, value: int) -> CVImage:
+    w, h, c = image.shape
+    width, height = w * value, h * value
+    result = empty_image(width, height, c)
+    for iy, y_line in enumerate(image):
+        for ix, point in enumerate(y_line):
+            tx, ty = ix * value, iy * value
+            for dx, dy in itertools.product(range(value), range(value)):
+                result[ty + dy][tx + dx] = point
+
+    return result
