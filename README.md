@@ -39,7 +39,3 @@ if r.matched:
 
 # Acknowledgement
 
-Free Pycharm License for opensource project  
-[Licenses for Open Source Development - Community Support](https://jb.gg/OpenSourceSupport)
-![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
-![PyCharm logo](https://resources.jetbrains.com/storage/products/company/brand/logos/PyCharm.png)
